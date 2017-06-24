@@ -134,59 +134,24 @@ app.get('/timer', function(req, res) {
 })
 //Get and post methods for events on app/home page
 
-//get method needs to be done in page resolve
-//app.get('/app/home', function(req, res){
-//   Events.find({}).exec(err, events) {
-//     if(err){
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).send(events);
-//     }
-//   };
-// });
-
-//post method is a click event on Add event button
-
-// app.post('/events', function(req, res){
-
-//   newEvent.save(function(err, newEvent){
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).send(newEvent);
-//     }
-//   })
-// });
-
-app.post('/events', function(req, res) {
-  const address = req.body.location;
-
-  request(geocodeURL + address, function(err, response, body) {
-
-    console.log(body);
-    req.body.location = JSON.parse(body).results[0].geometry.location
-    req.body.location.address = address
-
-    // var location = {address: req.body.location, req.location}
-
-    var newEvent = new Event ({
-      name: req.body.name,
-      description: req.body.description,
-      host: req.body.host,
-      type: req.body.type,
-      time: req.body.time,
-      price: req.body.price || 0,
-      desiredParticipants: req.body.desiredParticipants,
-      location: req.body.location
-    });
-
-    newEvent.save(function(err, event) {
-      if (err) {
-        res.status(500).json(err);
-      } else {
-        res.status(201).json(event);
-      }
-    })
+app.post('/events', function(req, res){
+  var newEvent = new Event ({
+    name: req.body.name,
+    description: req.body.description,
+    host: req.body.host,
+    type: req.body.type,
+    time: req.body.time,
+    price: req.body.price || 0,
+    desiredParticipants: req.body.desiredParticipants,
+    //Need help inputing this may need a method to turn adress into coordinates
+    location: req.body.location
+  });
+  newEvent.save(function(err, newEvent){
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(newEvent);
+    }
   })
 });
 
@@ -199,6 +164,6 @@ app.get('/events', function(req, res){
 
 
 //Server init to listen on port 3000 -> Needs to be altered for deployment
-app.listen(port)
+app.listen(port);
 console.log('Greenfield server running on :3000');
 //here is a change.
