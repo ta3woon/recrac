@@ -30,6 +30,35 @@ angular.module('App').factory('mappingTools', ['$q', '$window', '$http', functio
     });
   }
 
+  function getEvent(id) {
+    return $http.get('/events/'+id, {contentType: 'application/json'})
+    .then(function (response) {
+      console.log('Get Successful: ', response);  
+      return response.data;
+    })
+    .catch(function (response) {
+      console.error('Get Failed', response);
+    });
+  }
+
+  function saveEvent(newEvent, id) {
+      var req = {
+        method: 'PUT',
+        url: "/events/" + id,
+        headers: {
+         'Content-Type': "application/json"
+        },
+        data: newEvent
+      }
+
+      return $http(req).then(function(success, error) {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        console.log(success);
+      })
+  }
   // function joinEvent(joinedEventId) {
   //   return $http.put('/events', {eventData: joinedEventId}, {contentType: 'application/json'})
   //   .then(function (response) {
@@ -164,6 +193,8 @@ angular.module('App').factory('mappingTools', ['$q', '$window', '$http', functio
     return {
       getCurrentPosition : getCurrentPosition,
       getEvents: getEvents,
+      getEvent: getEvent,
+      saveEvent: saveEvent,
       eventToMarker: eventToMarker,
       toggleLayer: toggleLayer,
       defaultLoc: defaultLoc,

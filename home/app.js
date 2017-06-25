@@ -29,7 +29,11 @@ angular.module('App', ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngAuto
   .state('app.dash', {
     url: "/dashboard",
     templateUrl: './templates/app.dash.html',
-    controller: function ($scope, userService) {
+    controller: function ($scope, userService, mappingTools) {
+      $scope.events = []
+      mappingTools.getEvents().then(function(data) {
+        $scope.events = data;
+      })
       userService
         .authenticate()
         .then(function (user) { $scope.user = user });
@@ -50,9 +54,17 @@ angular.module('App', ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngAuto
   .state('app.event', {
     url: "/events/:eventId",
     templateUrl: './templates/app.event.html',
-    controller: function ($scope, $stateParams, userService) {
-
+    controller: function ($scope, $stateParams, userService, mappingTools) {
       $scope.id = $stateParams.eventId;
+      $scope.event = {};
+      mappingTools.getEvent($scope.id).then(function(data) {
+        $scope.event = data;
+      })
+      $scope.save = function() {
+        mappingTools.saveEvent($scope.event, $scope.id).then(function() {
+          alert("TEST SAVE");
+        })
+      }
     }
   })
 })
