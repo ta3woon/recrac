@@ -39,17 +39,6 @@ angular.module('App', ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngAuto
         .then(function (user) { $scope.user = user });
     }
   })
-  // OLD EVENTS BACKED UP JUST IN CASE
-
-  // .state('app.event', {
-  //   url: "/events",
-  //   templateUrl: './templates/app.event.html',
-  //   controller: function ($scope, userService) {
-  //     userService
-  //       .authenticate()
-  //       .then(function (user) { $scope.user = user });
-  //   }
-  // })
 
   .state('app.event', {
     url: "/events/:eventId",
@@ -59,7 +48,7 @@ angular.module('App', ['ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngAuto
       $scope.event = {};
       mappingTools.getEvent($scope.id).then(function(data) {
         $scope.event = data;
-      })
+      });
       $scope.save = function() {
         mappingTools.saveEvent($scope.event, $scope.id).then(function() {
           alert("TEST SAVE");

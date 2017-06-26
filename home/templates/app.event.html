@@ -26,21 +26,27 @@
           <div style="padding: 20px;">
             <div class="mdl-card__supporting-text event-details">
               <h4><b>Event Details</b></h4>
+              <span>Event Name</span>
+              <p click-to-edit="event.name"></p>
+
               <span>Description</span>
-              <p>{{ event.description }}</p>
+              <p click-to-edit="event.description"></p>
 
               <span>Location</span>
-              <p>{{ event.location.address }}</p>
+              <p click-to-edit="event.location.address"></p>
 
               <span>Participants</span>
               <p style="margin: 5px 0 0;"><img ng-src="{{user.data.user.picture}}"/> <img ng-src="{{user.data.user.picture}}"/> <img ng-src="{{user.data.user.picture}}"/></p>
               <p style="margin: 0 0 10px 0;font-style: italic;font-size: 0.9em;">{{ event.confirmedParticipants }} out of {{ event.desiredParticipants }} </p>
 
               <span>Time Remaining</span>
-              <p>{{ event.time }}</p>
+              <p click-to-edit="event.time"></p>
 
               <span>What to bring</span>
-              <p>{{ event.price }}</p>
+              <div click-to-edit="event.price"></p>
+
+              <span>Type</span>
+              <p click-to-edit="event.type"></p>
             </div>
           </div>
         </section>
@@ -56,9 +62,6 @@
               <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone event-details">
                 <span>Name</span>
                 <p>{{ event.host }}</p>
-
-                <span>Category</span>
-                <p>{{ event.type }}</p>
               </div>
             </div>
           </div>
@@ -81,12 +84,12 @@
 <!--           <div class="mdl-card__actions"> -->
             <div layout="column" class="md-inline-form">
               <md-content layout-gt-sm="row" layout-padding>
-              <div>
+              <div style="width: 100%">
                 <form name="eventComment">
-                  <div layout-gt-xs="row">
-                  <md-input-container class="md-block">
+                  <div layout-gt-lg="row">
+                  <md-input-container class="md-block" style="margin-bottom: 0px;">
                     <!-- <label>Comments</label> -->
-                    <textarea ng-model="message.text" md-maxlength="150" rows="5" md-select-on-focus style="width:99%"> </textarea>
+                    <textarea ng-model="message.text" md-maxlength="140" rows="2" md-select-on-focus style="width:99%"> </textarea>
                   </md-input-container>
                   <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Add Comment</a>
                   </div>

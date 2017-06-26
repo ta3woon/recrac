@@ -9,16 +9,16 @@
 
         <!-- PROFILE PHOTO and stuff -->
         <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp event-block-right" style="max-width:500px" >
-          <div style="padding: 20px;">
+          <div style="padding: 20px; width: 100%;">
             <div class="mdl-card__supporting-text event-details">
               <div class="user-profile" style="width:100%; background:black">
                 <img ng-src="{{user.data.user.facebook.picture.data.url}}"/>
               </div>
               <br/>
-              <span>School</span>
-              <p>Hack Reactor, NY</p>
-              <span>Work</span>
-              <p>bidyourtime</p>
+              <span>Email</span>
+              <p click-to-edit="user.email">Hack Reactor, NY</p>
+              <span>Phone Number</span>
+              <p click-to-edit="user.number">bidyourtime</p>
             </div>
           </div>
         </section>
@@ -31,40 +31,10 @@
                 <h2 style="margin-top: 0"><b>Hello, I'm {{user.data.user.user}}</b></h2>
                 <h4><b>New York, NY</b></h4>
                 <span>Description</span>
-                <p>I like green eggs and ham! I do! I like them, Sam-I-am! And I would eat them in a boat! And I would eat them with a goat. And I will eat them in the rain. And in the dark. And on a train. And in a car. And in a tree. They are so good so good you see!</p>
+                <p click-to-edit="user.description">I like green eggs and ham! I do! I like them, Sam-I-am! And I would eat them in a boat! And I would eat them with a goat. And I will eat them in the rain. And in the dark. And on a train. And in a car. And in a tree. They are so good so good you see!</p>
               </div>
             </div>
           </div>
-
-          <!-- REVIEWS -->
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-
-                <!-- COMMENT TITLE -->
-                <div class="mdl-cell mdl-cell--12-col">
-                  <h4 class=""><b>Reviews</b></h4>
-                  <div class="rating">
-                    <span>Rating</span>
-                    <p>&#x2605 &#x2605 &#x2605 &#x2605</p><br/>
-                  </div>
-                </div>
-
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Add Comment</a>
-              </div>
-
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
         </section>
 
         <!-- CARDS -->
